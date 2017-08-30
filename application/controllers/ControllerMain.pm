@@ -1,15 +1,17 @@
 package controllers::ControllerMain;
 
+use strict;
+use warnings;
 
-sub new 
-{
-	my $class = ref($_[0])||$_[0];
-	return bless {}, $class;
-}
+use vars qw(@ISA);
+use core::Controller;
+@ISA = qw(core::Controller);
+
+
 
 sub actionIndex
 {
-
+print 'Main';
 }
 
 1;
