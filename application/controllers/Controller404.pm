@@ -1,11 +1,12 @@
 package controllers::Controller404;
 
 
-sub new 
-{
-	my $class = ref($_[0])||$_[0];
-	return bless {}, $class;
-}
+use strict;
+use warnings;
+
+use vars qw(@ISA);
+use core::Controller;
+@ISA = qw(core::Controller);
 
 sub actionIndex
 {
