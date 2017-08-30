@@ -1,9 +1,10 @@
- #!/usr/bin/perl
+ package utils::workDb;
 
  use lib('lib');
- use DBI;
- package utils::workDb;
  use strict;
+ use warnings;
+
+ use DBI;
  use Data::Dumper;
  sub new
  {
@@ -11,8 +12,8 @@
 		{
 		'dbh'=>undef,
 		'data'=>[],
-		'iNUpDelStatus'=>undef,
-		 'SelectStatus'=>undef
+		'inUpDelStatus'=>undef,
+		'SelectStatus'=>undef
 		};
 	my $class = ref($_[0])|| $_[0];
 	return bless $self, $class;
@@ -21,18 +22,22 @@
  sub connectToDb
  {
 	 my ($self) = @_;
-	 my $dsn = 'dbi:mysql:user2';
-	 my $user = 'user2';
-	 my $password = 'tuser2';
+	 my $dsn = 'dbi:mysql:user1';
+	 my $user = 'user1';
+	 my $password = 'tuser1';
 	 $self->{'dbh'} = DBI->connect($dsn, $user, $password,{ RaiseError => 1, AutoCommit => 0 });
 	 return !! $self->{'dbh'};
 
  }
 
+
 sub exeSelect
 {       
 	my($self,$query)= @_;
-	if($query eq "") return undef;
+	if($query eq '')
+	{
+		return undef;
+	}
 
 	$self->connectToDb() unless ($self->{'dbh'});
 	return undef unless ($self->{'dbh'});
@@ -47,7 +52,7 @@ sub exeSelect
 	}
 
 	$self->{'data'}= $hashArr;
-	 $self->{'dbh'}->disconnect();
+	#$self->{'dbh'}->disconnect(); #destroys upDelIns connection
 
 	$self->{'SelectStatus'} = 1;
 	return  $self->{'data'};
@@ -55,7 +60,22 @@ sub exeSelect
 
 sub upDelIns
 {
-	
+	my($self,$query)= @_;
+	if($query eq '')
+	{
+		return undef;
+	}
+
+	$self->connectToDb() unless ($self->{'dbh'});
+	return undef unless ($self->{'dbh'});
+
+
+	my $sth = $self->{'dbh'}->do($query) or die "Invalid query";
+
+	$self->{'dbh'}->disconnect();
+
+	$self->{'InUpDelStatus'} = 1;
+	return  1;
 }
 
 sub getData
@@ -65,6 +85,4 @@ sub getData
 
 }
 
-1
-
-
+1;
