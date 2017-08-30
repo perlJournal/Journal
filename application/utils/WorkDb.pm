@@ -1,4 +1,4 @@
- package utils::workDb;
+ package utils::WorkDb;
 
  use lib('lib');
  use strict;
