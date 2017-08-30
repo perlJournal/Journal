@@ -1,17 +1,15 @@
-#!C:\Perl\bin\perl.exe
+#!/usr/bin/perl -w
 
 use strict;
 use warnings;
-
+use vars qw(%in);
+use Data::Dumper;
 use CGI qw(:cgi-lib :escapeHTML :unescapeHTML);
-use CGI::Carp qw(fatalsToBrowser); # позволит выводить ошибки в браузер
+use CGI::Carp qw(fatalsToBrowser);
+use CGI::Cookie;
 
+$|=1;
+ReadParse();
 
-
-$|=1; # отключаем буферизацию ввода данных;
-ReadParse(); # получает данные из HTML формы в  хэш %in
-
-# вариант хедера, используется перед выводом в браузер
-print "Content-type: text/html; charset=utf-8\n\n";
 
 require 'application/bootstrap.pl';
