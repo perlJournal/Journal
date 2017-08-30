@@ -2,7 +2,7 @@
 
  use lib('lib');
  use DBI;
- package task3::workDb;
+ package utils::workDb;
  use strict;
  use Data::Dumper;
  sub new
