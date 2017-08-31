@@ -1,4 +1,4 @@
-package controllers::AuthorizationController;
+package controllers::ControllerAuthorization;
 
 use strict;
 use warnings;

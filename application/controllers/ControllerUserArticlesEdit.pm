@@ -1,4 +1,4 @@
-package controllers::UserArticlesEditController;
+package controllers::ControllerUserArticlesEdit;
 
 use strict;
 use warnings;
