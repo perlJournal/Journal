@@ -1,4 +1,4 @@
-package controllers::ProfileEditController;
+package controllers::ControllerProfileEdit;
 
 use strict;
 use warnings;
