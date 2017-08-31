@@ -1,4 +1,4 @@
-package controllers::ControllerMain;
+package controllers::ProfileEditController;
 
 use strict;
 use warnings;
@@ -11,7 +11,7 @@ use core::Controller;
 
 sub actionIndex
 {
-print 'Main';
+print 'ProfileEditController';
 }
 
 1;
