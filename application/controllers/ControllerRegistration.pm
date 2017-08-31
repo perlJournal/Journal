@@ -1,4 +1,4 @@
-package controllers::RegistrationController;
+package controllers::ControllerRegistration;
 
 use strict;
 use warnings;
