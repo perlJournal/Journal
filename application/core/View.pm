@@ -35,7 +35,8 @@ sub generateTemplate
 {
  my($self) = shift;
  my($text) = shift;
-$text =~ s/\%FUNC_(\w+)/$self->$1()/gse;
+ my($data) = shift;
+$text =~ s/\%FUNC_(\w+)/$self->$1($data)/gse;
 return $text;
 }
 
