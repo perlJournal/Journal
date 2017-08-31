@@ -46,14 +46,12 @@ sub exeSelect
 	my $hashArr = [];
 	my $sth = $self->{'dbh'}->prepare($query);
 	$sth->execute();
-
+	
 	while (my $hash = $sth->fetchrow_hashref) {
 		push @{$hashArr}, $hash;
 	}
-
-	$self->{'data'}= $hashArr;
-	#$self->{'dbh'}->disconnect(); #destroys upDelIns connection
-
+	$sth->finish();
+	$self->{'data'} = $hashArr;
 	$self->{'SelectStatus'} = 1;
 	return  $self->{'data'};
 }
@@ -69,10 +67,7 @@ sub upDelIns
 	$self->connectToDb() unless ($self->{'dbh'});
 	return undef unless ($self->{'dbh'});
 
-
 	my $sth = $self->{'dbh'}->do($query) or die "Invalid query";
-
-	$self->{'dbh'}->disconnect();
 
 	$self->{'InUpDelStatus'} = 1;
 	return  1;
@@ -81,8 +76,14 @@ sub upDelIns
 sub getData
 {
 	my($self) = @_;
-	return  $self->{'data'};
 
+	return  $self->{'data'};
+}
+
+sub DESTROY
+{
+	my($self) = @_;
+	$self->{'dbh'}->disconnect();
 }
 
 1;
