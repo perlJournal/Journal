@@ -15,10 +15,10 @@ use Data::Dumper;
 
 sub actionEdit
 {
-	my($self,$id)= @_;
+	my($self,$login,$email,$name,$serName)= @_;
 	my $obj = utils::WorkDb->new();
 	$obj->connectToDb();
-	my $data = $obj->upDelIns("UPDATE Data SET `key` = 'test' , `value` = 'cora' WHERE `key`= '$id' ");	
+	my $data = $obj->upDelIns("UPDATE journal_user SET `email` = '$email', `f_name` = '$name', `l_name` = '$serName'  WHERE `login`= '$login' ");	
 
 }
 
@@ -27,7 +27,7 @@ sub getUserData
 	my($self,$login)= @_;
 	my $obj = utils::WorkDb->new();
 	$obj->connectToDb();
-	my $dataUser = $obj->exeSelect("Select * from Data where `key`='$login' ");
+	my $dataUser = $obj->exeSelect("Select * from journal_user  where `login`='$login' ");
 	return $dataUser;
 }
 
