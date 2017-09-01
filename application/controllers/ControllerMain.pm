@@ -11,7 +11,10 @@ use core::Controller;
 
 sub actionIndex
 {
+
 print 'Main';
+
+
 }
 
 1;
