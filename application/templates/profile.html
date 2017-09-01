@@ -34,6 +34,7 @@
 		<div class="container">
 			<div class="row title">
 				<h1>You can edit information about yourself</h1>
+				 
 			</div>
 		</div>
 		<div class="container">
@@ -42,11 +43,11 @@
 					<div class="register-div">
 						<form method="POST">
 							<input class="form-control" placeholder="Login" type="text" name="login" disabled>
-							<input class="form-control" placeholder="Email" type="email" name="email">
+							<input class="form-control" placeholder="Email" type="email" name="email" value="%FUNC_getEmail" >
 							<input class="form-control" placeholder="Password" type="password" name="pass" disabled>
 							<input class="form-control" placeholder="Password confirm" type="password" name="passConfirm" disabled>
-							<input class="form-control" placeholder="Name" type="text" name="name">
-							<input class="form-control" placeholder="Second Name" type="text" name="name">
+							<input class="form-control" placeholder="Name" type="text" name="name" value="%FUNC_getName" >
+							<input class="form-control" placeholder="Second Name" type="text" name="serName" value="%FUNC_getSerName" >
 							<button class="btn btn-success login-btn" type="submit">Edit</button>
 						</form>
 					</div>

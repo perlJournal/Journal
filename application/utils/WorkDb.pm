@@ -22,9 +22,9 @@
  sub connectToDb
  {
 	 my ($self) = @_;
-	 my $dsn = 'dbi:mysql:user1';
-	 my $user = 'user1';
-	 my $password = 'tuser1';
+	 my $dsn = 'dbi:mysql:user2';
+	 my $user = 'user2';
+	 my $password = 'tuser2';
 	 $self->{'dbh'} = DBI->connect($dsn, $user, $password,{ RaiseError => 1, AutoCommit => 0 });
 	 return !! $self->{'dbh'};
 
