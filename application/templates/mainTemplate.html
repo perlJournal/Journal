@@ -4,7 +4,39 @@
         %FUNC_cssInclude
     </head>
     <body>
-%FUNC_showData
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">GeekJournal</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#">Link</a></li>
+		        <li><a href="#">Link</a></li>
+		        <li><a href="#">Link</a></li>
+		        <li><a href="#">Link</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<h1>All Articles</h1>
+					%FUNC_showAllArticles		
+				</div>
+				<div class="col-md-3 navbar-default" style="text-align: center;">
+					<h1>Profile links</h1>
+					<a href="#">link</a>
+					<a href="#">link</a>
+					<a href="#">link</a>
+		      </ul>
+				</div>
+			</div>
+		</div>
         %FUNC_jsInclude
     </body>
 </html>
