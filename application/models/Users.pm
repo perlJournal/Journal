@@ -15,10 +15,10 @@ use Data::Dumper;
 
 sub actionEdit
 {
-	my($self,$id)= @_;
+	my($self,$login,$email,$name,$serName)= @_;
 	my $obj = utils::WorkDb->new();
 	$obj->connectToDb();
-	my $data = $obj->upDelIns("UPDATE Data SET `key` = 'test' , `value` = 'cora' WHERE `key`= '$id' ");	
+	my $data = $obj->upDelIns("UPDATE journal_user SET `email` = '$email', `f_name` = '$name', `l_name` = '$serName'  WHERE `login`= '$login' ");	
 
 }
 
@@ -57,6 +57,19 @@ sub insertUserData
     {
        return 0; 
     }
+
+}
+
+sub emptyString
+{
+	my($self,$email,$name,$serName);
+
+	 if ( $email =~ /^$/ && $name =~ /^$/ && $serName =~ /^$/  ) {
+		              print 'Empty string';
+	 } else 
+	 {
+		 return 1;
+	 }
 }
 
 sub setSessionValues

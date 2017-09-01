@@ -33,12 +33,22 @@ sub getArticleAll
 	return $data;
 }
 
-sub getArticleUser
+sub getArticleByUser
 {
 	my ($self, $query) = @_;
 	my $dbObj = utils::WorkDb->new();
 	$dbObj->connectToDb();
 	$dbObj->exeSelect("Select * from journal_articles where login = '$query'");	
+	my $data = $dbObj->getData();
+	return $data;
+}
+
+sub getArticleById
+{
+	my ($self, $query) = @_;
+	my $dbObj = utils::WorkDb->new();
+	$dbObj->connectToDb();
+	$dbObj->exeSelect("Select * from journal_articles where id_article = '$query'");	
 	my $data = $dbObj->getData();
 	return $data;
 }
