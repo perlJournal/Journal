@@ -80,4 +80,28 @@ sub getRoot
 return $rootPath;
 }
 
+sub getHeader
+{
+my $content .=   '<nav class="navbar navbar-default">';
+my $content .=          '<div class="container-fluid">';
+my $content .=            '<!-- Brand and toggle get grouped for better mobile display -->';
+my $content .=            '<div class="navbar-header">';
+my $content .=              '<a class="navbar-brand" href="#">GeekJournal</a>';
+my $content .=            '</div>';
+
+my $content .=            '<!-- Collect the nav links, forms, and other content for toggling -->';
+my $content .=            '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">';
+my $content .=              '<ul class="nav navbar-nav navbar-right">';
+my $content .=                '<li><a href="#">Log in</a></li>';
+my $content .=                '<li><a href="#">Sign up</a></li>';
+my $content .=              '</ul>';
+my $content .=            '</div><!-- /.navbar-collapse -->';
+my $content .=          '</div><!-- /.container-fluid -->';
+my $content .=        '</nav>';
+
+return $content;
+
+}
+
+
 1;
