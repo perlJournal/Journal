@@ -6,19 +6,22 @@ use warnings;
 use vars qw(@ISA);
 use core::Controller;
 use models::Articles;
-use views::ViewMain;
+use views::ViewUserArticles;
+
 use Data::Dumper;
 
 @ISA = qw(core::Controller);
 
-my $modelObj = model::Articles->new();
-
+my $modelObj = models::Articles->new();
 
 sub actionIndex
 {
 	my $login = 'veritas';
-	my $userArticles = $modelObj->getA
-	print 'UserArticlesController';
+	my $userArticles = $modelObj->getArticleUser($login);	
+	my $view = views::ViewUserArticles->new();
+	my $template = $view->getTemplate('articlesUser');
+	my $page = $view->generateTemplate($template, $userArticles);
+	$view->viewTemplate($page);
 }
 
 1;
