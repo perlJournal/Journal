@@ -27,8 +27,36 @@ sub getUserData
 	my($self,$login)= @_;
 	my $obj = utils::WorkDb->new();
 	$obj->connectToDb();
-	my $dataUser = $obj->exeSelect("Select * from Data where `key`='$login' ");
+	my $dataUser = $obj->exeSelect("Select * from journal_user where `login`='$login' ");
 	return $dataUser;
+}
+
+sub insertUserData
+{
+    my($self,%data) = @_;
+    my $db = utils::WorkDb->new;
+    $db->connectToDb;
+    my $checker = $self->getUserData(%data->{'login'});
+    $checker = $checker->[0];
+    unless($checker->{'login'} eq %data->{'login'})
+    {
+        $db->upDelIns("INSERT INTO journal_user(login,
+                                             f_name,
+                                             l_name,
+                                             email,
+                                             pass)
+                                             VALUES (
+                                             '". %data->{'login'}."','"
+                                             . %data->{'name'} ."','"
+                                             . %data->{'secName'}."','"
+                                             . %data->{'email'} ."','"
+                                             . %data->{'pass'}. "')"
+                                             );
+    }
+    else
+    {
+       return 0; 
+    }
 }
 
 sub setSessionValues
@@ -68,5 +96,27 @@ sub unsetSession
 	$session->clearSessionElements(['hash']);
 }
 
+sub validateDataRegister
+{
+    my($self,%data) = @_;
+    my $cheker = 1;
+    if(%data->{'login'} eq '')
+    {
+        $cheker = 0;
+    }
+    elsif(%data->{'pass'}  eq'')
+    {
+        $cheker = 0
+    } 
+    elsif(%data->{'email'}  eq'')
+    {
+        $cheker = 0
+    }   
+    elsif(%data->{'passConfirm'}  eq'')
+    {
+        $cheker = 0
+    }
+    return $cheker;
+}
 
 1;
