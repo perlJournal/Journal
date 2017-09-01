@@ -15,11 +15,13 @@ my $modelObj = models::Articles->new();
 
 sub actionIndex
 {
+
 	my $allArticles =  $modelObj->getArticleAll();
 	my $view = views::ViewMain->new();
 	my $template = $view->getTemplate('mainTemplate');
 	my $page = $view->generateTemplate($template, $allArticles);
 	$view->viewTemplate($page);
+
 }
 
 
