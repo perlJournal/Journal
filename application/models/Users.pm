@@ -31,6 +31,18 @@ sub getUserData
 	return $dataUser;
 }
 
+sub emptyString
+{
+	my($self,$email,$name,$serName);
+
+	 if ( $email =~ /^$/ && $name =~ /^$/ && $serName =~ /^$/  ) {
+		              print 'Empty string';
+	 } else 
+	 {
+		 return 1;
+	 }
+}
+
 sub setSessionValues
 {
 	my($self) = shift;
