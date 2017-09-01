@@ -15,9 +15,7 @@ my $modelObj = models::Articles->new();
 
 sub actionIndex
 {
-	my $login = 'cardo';
 	my $allArticles =  $modelObj->getArticleAll();
-	my $userArticles = $modelObj->getArticleUser($login);	
 	my $view = views::ViewMain->new();
 	my $template = $view->getTemplate('mainTemplate');
 	my $page = $view->generateTemplate($template, $allArticles);

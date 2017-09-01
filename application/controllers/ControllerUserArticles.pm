@@ -17,7 +17,7 @@ my $modelObj = models::Articles->new();
 sub actionIndex
 {
 	my $login = 'veritas';
-	my $userArticles = $modelObj->getArticleUser($login);	
+	my $userArticles = $modelObj->getArticleByUser($login);	
 	my $view = views::ViewUserArticles->new();
 	my $template = $view->getTemplate('articlesUser');
 	my $page = $view->generateTemplate($template, $userArticles);

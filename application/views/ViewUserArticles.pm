@@ -19,7 +19,7 @@ sub showUserArticles
 
 	for my $n (values $data)
 	{
-		$content .= "<div class='alert alert-success' role='alert'> <strong> Author: $n->{'login'}</strong><br /> $n->{'content'}<br />Date: $n->{'date_insert'}<br /><a href='$wayEditArticle\?id_article=' role='button' aria-pressed='true'>Edit</a><br /></div>";
+		$content .= "<div class='alert alert-success' role='alert'> <strong> Author: $n->{'login'}</strong><br /> $n->{'content'}<br />Date: $n->{'date_insert'}<br /><a href='$wayEditArticle\?id_article=$n->{'id_article'}' role='button' aria-pressed='true'>Edit</a><br /></div>";
 	}	
 	
 	return $content;
