@@ -1,57 +1,33 @@
 <html>
 	<head>
 		<title>Perl</title>
-		 <!-- Font Awesome -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-		<link rel="stylesheet" type="text/css" href="style.css">
+		 %FUNC_cssInclude%
 	</head>
 	<body>
-		<nav class="navbar navbar-default">
-		  <div class="container-fluid">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">GeekJournal</a>
-		    </div>
-
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#">Link</a></li>
-		        <li><a href="#">Link</a></li>
-		        <li><a href="#">Link</a></li>
-		        <li><a href="#">Link</a></li>
-		      </ul>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>
+		%FUNC_getHeader%
 		<div class="container">
 			<div class="row title">
 				<h1>You can edit information about yourself</h1>
+				 
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<div class="register-div">
-						<form method="POST">
+						<form method="POST" action="ProfileEdit/Edit">
 							<input class="form-control" placeholder="Login" type="text" name="login" disabled>
-							<input class="form-control" placeholder="Email" type="email" name="email">
+							<input class="form-control" placeholder="Email" type="email" name="email" value="%FUNC_getEmail%" >
 							<input class="form-control" placeholder="Password" type="password" name="pass" disabled>
 							<input class="form-control" placeholder="Password confirm" type="password" name="passConfirm" disabled>
-							<input class="form-control" placeholder="Name" type="text" name="name">
-							<input class="form-control" placeholder="Second Name" type="text" name="name">
+							<input class="form-control" placeholder="Name" type="text" name="name" value="%FUNC_getName%" >
+							<input class="form-control" placeholder="Second Name" type="text" name="serName" value="%FUNC_getSerName%" >
 							<button class="btn btn-success login-btn" type="submit">Edit</button>
 						</form>
 					</div>
 				</div>		
 			</div>
 		</div>
+		%FUNC_jsInclude%
 	</body>
 </html>
