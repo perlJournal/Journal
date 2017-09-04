@@ -112,24 +112,43 @@ sub unsetSession
 sub validateDataRegister
 {
     my($self,%data) = @_;
-    my $cheker = 1;
+    my $checker = 1;
     if(%data->{'login'} eq '')
     {
-        $cheker = 0;
+        $checker = 0;
     }
     elsif(%data->{'pass'}  eq'')
     {
-        $cheker = 0
+        $checker = 0
     } 
     elsif(%data->{'email'}  eq'')
     {
-        $cheker = 0
+        $checker = 0
     }   
     elsif(%data->{'passConfirm'}  eq'')
     {
-        $cheker = 0
+        $checker = 0
     }
-    return $cheker;
+    return $checker;
 }
+
+sub valdiateDataLogin
+{
+    my($self,%data) = @_;
+    my $db = utils::WorkDb->new;
+    $db->connectToDb;
+    my $checker = $self->getUserData(%data->{'login'});
+    $checker = $checker->[0];
+    if($checker->{'pass'} eq %data->{'pass'} && $checker->{'login'} eq %data->{'login'})
+    {
+       return 1; 
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+
 
 1;
