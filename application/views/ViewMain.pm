@@ -25,7 +25,7 @@ sub showAllArticles
 
 	for my $n (values $data)
 	{
-		$content .= "<div class='alert alert-success' role='alert'> <strong> Author: $n->{'login'}</strong><br /> $n->{'content'}<br />Date: $n->{'date_insert'}<br /><br /></div>";
+		$content .= "<div class='alert alert-success' role='alert'> Author: $n->{'login'}<br /><strong>$n->{'title'}</strong><br /> $n->{'content'}<br />Date: $n->{'date_insert'}<br /><br /></div>";
 	}	
 	
 	return $content;

@@ -73,11 +73,19 @@ my    $js = '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jq
 
 sub getRoot
 {
-    my $path = %ENV->{'REQUEST_URI'};
+   my $path = %ENV->{'REQUEST_URI'};
    my @pathSplit = split('/',$path);
    my $rootPath = join('/',@pathSplit[0],@pathSplit[1],@pathSplit[2],@pathSplit[3],'');
 
 return $rootPath;
+}
+
+sub redirect
+{
+	my ($self, $way) = @_;
+	my $root = $self->getRoot();
+	$root .= $way;
+	print "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=$root\">\n";
 }
 
 sub getHeader
