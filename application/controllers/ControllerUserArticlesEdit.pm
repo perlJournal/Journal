@@ -33,12 +33,19 @@ sub actionIndex
 sub actionEdit
 {
 	my ($self) = @_;
+	if (%in->{'action'} eq 'delete')
+	{
+		my $id_article = %in->{'id_article'};
+		my $article = $modelObj->deleteArticle($id_article);
+	}
+	elsif (%in->{'action'} eq 'edit')
+	{ 
+		my $title = %in->{'title'};
+		my $content = %in->{'content'};
+		my $id_article = %in->{'id_article'};
+		my $article = $modelObj->updateArticle($title, $content, $id_article);	
+	}
 
-	my $title = %in->{'title'};
-	my $content = %in->{'content'};
-	my $id_article = %in->{'id_article'};
-	
-	my $article = $modelObj->updateArticle($title, $content, $id_article);	
 	my $view = views::ViewUserArticlesEdit->new();
 	$view->redirect('UserArticles');
 	return 1;

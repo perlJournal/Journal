@@ -43,7 +43,7 @@ sub getArticleById
 	my ($self, $id_article) = @_;
 	my $dbObj = utils::WorkDb->new();
 	$dbObj->connectToDb();
-	$dbObj->exeSelect("Select * from journal_articles where id_article = '$id_article'");	
+	$dbObj->exeSelect("Select * from journal_articles where id_article = $id_article");	
 	my $data = $dbObj->getData();
 	return $data;
 }
@@ -54,5 +54,23 @@ sub updateArticle
 	my $dbObj = utils::WorkDb->new();
 	$dbObj->connectToDb();
 	$dbObj->upDelIns("Update journal_articles set title = '$title', content = '$content' where id_article = $id_article");	
+	return 1;
+}
+
+sub deleteArticle
+{
+	my ($self, $id_article) = @_;
+	my $dbObj = utils::WorkDb->new();
+	$dbObj->connectToDb();
+	$dbObj->upDelIns("Delete from journal_articles where id_article = $id_article");	
+	return 1;
+}
+
+sub insertArticle
+{
+	my ($self, $login, $title, $content) = @_;
+	my $dbObj = utils::WorkDb->new();
+	$dbObj->connectToDb();
+	$dbObj->upDelIns("Insert into journal_articles (login, title, content, date_insert) values ('$login', '$title', '$content',  now())");
 	return 1;
 }

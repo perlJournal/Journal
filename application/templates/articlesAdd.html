@@ -1,9 +1,10 @@
 <html>
 	<head>
 		<title>Perl</title>
+		%FUNC_cssInclude%
 	</head>
 	<body>
-	<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -23,17 +24,15 @@
 		</nav>
 		<div class="container">
 			<div class="row title">
-				<h1>Add new article</h1>
+				<h1>Add article</h1>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<div class="add-article-div">
-						<form method="POST">
-							<input class="form-control" placeholder="Title" type="text" name="title">
-							<textarea placeholder="Article"  class="form-control" name="article"  rows="8"></textarea>
-							<button class="btn btn-success login-btn" type="submit">Post</button>
+						<form method="POST" action="%FUNC_getRoot%UserArticlesAdd/Edit">
+							<div> %FUNC_addArticle% </div>
 						</form>
 					</div>
 				</div>		
@@ -41,4 +40,3 @@
 		</div>
 	</body>
 </html>
-

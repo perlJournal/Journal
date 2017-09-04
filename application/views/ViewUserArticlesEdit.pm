@@ -20,7 +20,8 @@ sub editArticle
 	my $content = "<input class='form-control' placeholder='Title' type='text' name='title' value='$title'>
 				<textarea placeholder='Article'  class='form-control' name='content' rows='8'>$text</textarea>
 				<input type='hidden' name='id_article' value='$id_article'>
-				<button class='btn btn-success login-btn' type='submit'>Post</button>";
+				<button class='btn btn-success login-btn' type='submit' name='action' value='edit'>Edit</button>
+				<button class='btn btn-success login-btn' type='submit' name='action' value='delete'>Delete</button>";
 
 	return $content;
 }
