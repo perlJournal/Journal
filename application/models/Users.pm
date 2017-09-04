@@ -9,7 +9,7 @@ use File::Basename qw(dirname);
 use lib dirname(_FILE_).'/../utils/CGI/';
 use core::Model;
 use utils::WorkDb;
-use utils::CGI::Session;
+#use utils::CGI::Session;
 @ISA = qw(core::Model);
 use DBI;
 use Data::Dumper;
