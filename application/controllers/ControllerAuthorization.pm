@@ -36,8 +36,11 @@ sub actionLogin
     
     my $view = views::ViewAuthorization->new;
     my $model = models::Users->new;
-    if($model->valdiateDataLogin(%dataUser))
+    if($model->valdiateDataLogin(%dataUser) && length %dataUser->{'login'} > 3 && length %dataUser->{'pass'})
     {
+        my $hash = $model->generateString();
+        my $login = %dataUser->{'login'};
+        $model->updateHash($login,$hash);
     }
     else
     {
