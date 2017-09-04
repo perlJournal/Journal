@@ -49,7 +49,6 @@ sub start
 
     if(-e $controllerPath)
     {
-        print "Content-type: text/html; charset=utf-8\n\n";
         require $controllerPath;
     }
     else
@@ -70,7 +69,6 @@ sub start
 
 sub _errorPage404
 {
-    print "Content-type: text/html; charset=utf-8\n\n";
     my $controllerName = 'Controller404';
     my $controllerCreate = 'controllers::' . $controllerName;
     my $controllerFile = $controllerName . '.pm';
