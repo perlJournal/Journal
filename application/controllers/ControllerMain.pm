@@ -16,10 +16,12 @@ my $modelObj = models::Articles->new();
 sub actionIndex
 {
 
-	my $allArticles =  $modelObj->getArticleAll();
+	my @allArticles = @{$modelObj->getArticleAll()};
+	my @sorted = sort {$b->{'id_article'} <=> $a->{'id_article'}} @allArticles;
+	my $list = \@sorted;
 	my $view = views::ViewMain->new();
 	my $template = $view->getTemplate('mainTemplate');
-	my $page = $view->generateTemplate($template, $allArticles);
+	my $page = $view->generateTemplate($template, $list);
 	$view->viewTemplate($page);
 
 }
