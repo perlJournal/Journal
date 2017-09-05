@@ -2,9 +2,16 @@ package core::Route;
 
 use strict;
 use warnings;
-
 use Data::Dumper;
-use CGI;
+use vars qw( %in);
+use CGI qw(:cgi-lib :escapeHTML :unescapeHTML);
+use CGI::Carp qw(fatalsToBrowser);
+
+use vars qw(%in);
+
+$|=1;
+ReadParse();
+
 sub new 
 {
     my $class = ref($_[0])||$_[0];
@@ -18,10 +25,14 @@ sub start
     my  $actionName = 'Index';
 
     my @route = split /\//, %ENV->{'REQUEST_URI'};
-
     if(@route[4])
     {
-        $controllerName = @route[4]; 
+        my @query = $self->queryGet(@route[4]);
+        if(@query[0])
+        {
+            $controllerName = @query[0];
+        }
+        $self->dataGet(@query[1]); 
     }
 
     if(@route[5])
@@ -38,7 +49,6 @@ sub start
 
     if(-e $controllerPath)
     {
-        print "Content-type: text/html; charset=utf-8\n\n";
         require $controllerPath;
     }
     else
@@ -52,7 +62,6 @@ sub start
     {
         $controller->$actionName();
     }
-
 }
 
 
@@ -60,7 +69,6 @@ sub start
 
 sub _errorPage404
 {
-    print "Content-type: text/html; charset=utf-8\n\n";
     my $controllerName = 'Controller404';
     my $controllerCreate = 'controllers::' . $controllerName;
     my $controllerFile = $controllerName . '.pm';
@@ -68,5 +76,22 @@ sub _errorPage404
     require $controllerPath;
     return $controllerCreate;
 }
+
+sub queryGet
+{
+my($self,$string) = @_;
+my @data =  split(/\?/,$string);
+return @data; 
+}
+
+sub dataGet
+{
+my($self,$string) = @_;
+my @getString = split(/=/, $string);
+return %in->{@getString[0]} = @getString[1];
+}
+
+
+
 
 1;

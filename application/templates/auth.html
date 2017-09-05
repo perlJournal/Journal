@@ -1,7 +1,29 @@
 <html>
 	<head>
 		<title>Perl</title>
+		%FUNC_cssInclude%
 	</head>
 	<body>
+		%FUNC_getHeader%
+		<div class="container">
+			<div class="row title">
+                <h1>Please enter login and pass</h1>
+                %FUNC_msg%
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="login-div">
+						<form method="POST" action="%FUNC_getRoot%Authorization/Login">
+							<input class="form-control" placeholder="Login" type="text" name="login">
+							<input class="form-control" placeholder="Password" type="password" name="pass">
+							<button class="btn btn-success login-btn" type="submit">Login</button>
+						</form>
+					</div>
+				</div>		
+			</div>
+		</div>
+		%FUNC_jsInclude%
 	</body>
 </html>

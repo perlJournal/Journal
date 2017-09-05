@@ -1,7 +1,33 @@
 <html>
 	<head>
-		<title>Perl</title>
+        <title>Perl</title>
+        %FUNC_cssInclude%
 	</head>
 	<body>
+		%FUNC_cssInclude%
+		<div class="container">
+			<div class="row title">
+                <h1>Please enter information about yourself</h1>
+                %FUNC_msgRegister%
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="register-div">
+                        <form action="%FUNC_getRoot%Registration/Register/" method="POST">
+							<input class="form-control" placeholder="Login" type="text" name="login">
+							<input class="form-control" placeholder="Email" type="email" name="email">
+							<input class="form-control" placeholder="Password" type="password" name="pass">
+							<input class="form-control" placeholder="Password confirm" type="password" name="passConfirm">
+							<input class="form-control" placeholder="Name" type="text" name="name">
+							<input class="form-control" placeholder="Second Name" type="text" name="secName">
+							<button class="btn btn-success login-btn" type="submit">register</button>
+						</form>
+					</div>
+				</div>		
+			</div>
+        </div>
+        %FUNC_jsInclude%
 	</body>
 </html>

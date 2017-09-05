@@ -7,15 +7,20 @@ use vars qw(@ISA);
 use core::View;
 @ISA = qw(core::View);
 
-sub showData
+sub showAllArticles
 {
-my ($self) = shift;
-my ($data) = shift;
+	my ($self) = shift;
+    my ($login) = shift;
+	my ($data) = shift;
 
-return $data
+	my $content = '';
 
+	for my $n (values $data)
+	{
+		$content .= "<div class='alert alert-success' role='alert'> Author: $n->{'login'}<br /><strong>$n->{'title'}</strong><br /> $n->{'content'}<br />Date: $n->{'date_insert'}<br /><br /></div>";
+	}	
+	
+	return $content;
 }
-
-
 
 1;

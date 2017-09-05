@@ -1,10 +1,19 @@
 <html>
     <head>
         <title>Perl</title>
-        %FUNC_cssInclude
+        %FUNC_cssInclude%
     </head>
     <body>
-%FUNC_showData
-        %FUNC_jsInclude
+		%FUNC_getHeader%
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<h1>All Articles</h1>
+					%FUNC_showAllArticles%		
+				</div>
+			%FUNC_getSidebar%	
+			</div>
+		</div>
+        %FUNC_jsInclude%
     </body>
 </html>

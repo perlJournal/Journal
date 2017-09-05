@@ -19,11 +19,6 @@ sub new
 	return bless{}, $class;
 } 
 
-sub msg
-{
-	return 'Articles';
-}
-
 sub getArticleAll
 {
 	my ($self) = @_;
@@ -33,12 +28,49 @@ sub getArticleAll
 	return $data;
 }
 
-sub getArticleUser
+sub getArticleByUser
 {
-	my ($self, $query) = @_;
+	my ($self, $login) = @_;
 	my $dbObj = utils::WorkDb->new();
 	$dbObj->connectToDb();
-	$dbObj->exeSelect("Select * from journal_articles where login = '$query'");	
+	$dbObj->exeSelect("Select * from journal_articles where login = '$login'");	
 	my $data = $dbObj->getData();
 	return $data;
+}
+
+sub getArticleById
+{
+	my ($self, $id_article) = @_;
+	my $dbObj = utils::WorkDb->new();
+	$dbObj->connectToDb();
+	$dbObj->exeSelect("Select * from journal_articles where id_article = $id_article");	
+	my $data = $dbObj->getData();
+	return $data;
+}
+
+sub updateArticle
+{
+	my ($self, $title, $content, $id_article) = @_;
+	my $dbObj = utils::WorkDb->new();
+	$dbObj->connectToDb();
+	$dbObj->upDelIns("Update journal_articles set title = '$title', content = '$content' where id_article = $id_article");	
+	return 1;
+}
+
+sub deleteArticle
+{
+	my ($self, $id_article) = @_;
+	my $dbObj = utils::WorkDb->new();
+	$dbObj->connectToDb();
+	$dbObj->upDelIns("Delete from journal_articles where id_article = $id_article");	
+	return 1;
+}
+
+sub insertArticle
+{
+	my ($self, $login, $title, $content) = @_;
+	my $dbObj = utils::WorkDb->new();
+	$dbObj->connectToDb();
+	$dbObj->upDelIns("Insert into journal_articles (login, title, content, date_insert) values ('$login', '$title', '$content',  now())");
+	return 1;
 }
