@@ -21,13 +21,13 @@ ReadParse();
 
 sub actionIndex
 {
-	my ($self) = @_;
     my $view = views::ViewUserArticlesAdd->new();
     my $model = models::Users->new();
-    if($model->checkUser)
+
+    if(my $auth = $model->checkUser)
     {
 	    my $template = $view->getTemplate('articlesAdd');
-	    my $page = $view->generateTemplate($template);
+	    my $page = $view->generateTemplate($template, $auth);
 	    $view->viewTemplate($page);
     }
     else

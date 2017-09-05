@@ -25,7 +25,7 @@ sub actionIndex
 	my $list = \@sorted;
 
 	my $template = $view->getTemplate('mainTemplate');
-	my $page = $view->generateTemplate($template, $list, $auth);
+	my $page = $view->generateTemplate($template, $auth, $list);
 	$view->viewTemplate($page);
 }
 
