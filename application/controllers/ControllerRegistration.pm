@@ -44,8 +44,7 @@ if($model->validateDataRegister(%dataUser))
         {
             $self->viewPage(0,'registration succes');
             my $view = views::ViewRegistration->new();
-            $view->redirect('',"Content-type: text/html; charset=utf-8\n\n");
-            
+           $view->redirect('Authorization'); 
         }
         else
         {
