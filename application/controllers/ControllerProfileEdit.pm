@@ -22,11 +22,11 @@ sub actionIndex
     
     if($model->checkUser)
     {
-
+	 my $auth = $model->checkUser(); 
      my %cookieData = $model->getCookieData;
      my $getDataUserById = $model->getUserDataById(%cookieData->{'id'});
 	 my $data = $view->getTemplate('profile');
-	 my $obj =  $view->generateTemplate($data,$getDataUserById );
+	 my $obj =  $view->generateTemplate($data, $auth, $getDataUserById );
 	 $view->viewTemplate($obj);
     }
     else
@@ -38,19 +38,20 @@ sub actionIndex
 
 sub actionEdit
 {
-    my $email = $var->param('email');
+	 my $auth = $model->checkUser(); 
+	 my $email = $var->param('email');
 	my $name = $var->param('name');
 	my $serName = $var->param('serName');
     my %cookieData = $model->getCookieData;
     my $getDataUserById = $model->getUserDataById(%cookieData->{'id'});
-    $getDataUserById = $getDataUserById->[0];
-my    $login = $getDataUserById->{'login'}  ; 
-    $model->emptyString($email,$name,$serName);
+     $getDataUserById = $getDataUserById->[0];
+    my $login = $getDataUserById->{'login'}; 
+     $model->emptyString($email,$name,$serName);
      my $editUser =  $model->actionEdit($login,$email,$name,$serName);
 	 my $getDataUserById = $model->getUserData($login);
 	 my $view = views::ViewProfileEdit->new();
 	 my $data = $view->getTemplate('profile');
-	 my $obj =  $view->generateTemplate($data,$getDataUserById );
+	 my $obj =  $view->generateTemplate($data, $auth, $getDataUserById );
 	 $view->viewTemplate($obj);
 
 

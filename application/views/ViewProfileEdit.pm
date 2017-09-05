@@ -11,6 +11,7 @@ use core::View;
 sub getEmail
 {
 	 my ($self) = shift;
+   	my ($login) = shift;
 	 my ($data) = shift;
 	 my $content = '';
 	 for my $n (values $data)
@@ -23,6 +24,7 @@ sub getEmail
 sub getName
 {
 	 my ($self) = shift;
+	 my ($login) = shift;
      my ($data) = shift;
 	 my $content = '';
 	 for my $n (values $data)
@@ -35,6 +37,7 @@ sub getName
 sub getSerName
 {
 	my ($self) = shift;
+	my ($login) = shift;
 	my ($data) = shift;
 	my $content = '';
     for my $n (values $data)
