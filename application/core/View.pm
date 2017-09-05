@@ -44,7 +44,9 @@ sub viewTemplate
 {
     my($self) = shift;
     my($temp) = shift;
-    print $temp;
+    my($headers) = shift;
+    $headers .= "Content-type: text/html; charset=utf-8\n\n"; 
+    print $headers .  $temp;
 }
 
 sub cssInclude
@@ -82,10 +84,10 @@ return $rootPath;
 
 sub redirect
 {
-	my ($self, $way) = @_;
+	my ($self, $way,$headers) = @_;
 	my $root = $self->getRoot();
 	$root .= $way;
-	print "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=$root\">\n";
+	print $headers . "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=$root\">\n";
 }
 
 sub getHeader
