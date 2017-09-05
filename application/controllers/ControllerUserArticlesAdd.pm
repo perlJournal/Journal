@@ -52,7 +52,7 @@ sub actionEdit
 
 	my $article = $modelObj->insertArticle($login, $title, $content);	
 	my $view = views::ViewUserArticlesAdd->new();
-	$view->redirect('UserArticles');
+	$view->redirect('UserArticles',"Content-type: text/html; charset=utf-8\n\n");
 	return 1;
 }
 

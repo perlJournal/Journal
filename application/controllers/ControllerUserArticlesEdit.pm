@@ -56,7 +56,7 @@ sub actionEdit
 		my $article = $articleObj->updateArticle($title, $content, $id_article);	
 	}
 
-	$view->redirect('UserArticles');
+	$view->redirect('UserArticles',"Content-type: text/html; charset=utf-8\n\n");
 	return 1;
 }
 

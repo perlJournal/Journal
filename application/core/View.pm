@@ -88,7 +88,8 @@ sub redirect
     my ($self, $way,$headers) = @_;
     my $root = $self->getRoot();
     $root .= $way;
-    print $headers . "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=$root\">\n";
+    my $redirect = "<META HTTP-EQUIV=refresh CONTENT=\"1;URL=$root\">\n";
+    print   $headers . $redirect ;
 }
 
 sub getHeader
