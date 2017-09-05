@@ -38,7 +38,7 @@ sub actionIndex
 
 
       my $template = $view->getTemplate('articlesUser');
-      my $page = $view->generateTemplate($template, $list, $auth);
+      my $page = $view->generateTemplate($template, $auth, $list);
       $view->viewTemplate($page);
     }
     else
