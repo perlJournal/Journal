@@ -10,7 +10,7 @@ use core::View;
 sub showAllArticles
 {
 	my ($self) = shift;
-	my ($login) = shift;
+    my ($login) = shift;
 	my ($data) = shift;
 
 	my $content = '';
