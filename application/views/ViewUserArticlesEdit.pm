@@ -10,8 +10,7 @@ use Data::Dumper;
 
 sub editArticle 
 {
-	my ($self) = shift;
-	my ($data) = shift;
+	my ($self, $login, $data) = @_;
 	
 	my $title =  $data->[0]->{'title'};
 	my $text  =  $data->[0]->{'content'};
