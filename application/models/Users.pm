@@ -142,10 +142,6 @@ sub updateHash
     my $data = $db->upDelIns("UPDATE journal_user SET `hash` = '$hash' WHERE `login`= '$login' ");
 }
 
-sub checkHash
-{
-    my($self, $hash) = @_;
-}
 
 sub setCookie
 {
@@ -162,11 +158,11 @@ my %cookies = CGI::Cookie->fetch;
 my $id = %cookies->{'id'}->{'value'}->[0];
 my $hash = %cookies->{'hash'}->{'value'}->[0];
 my %data = (
-    'id' => $id;
-    'hash' => $hash;
+    'id' => $id,
+    'hash' => $hash,
 );
 
-return %data
+return %data;
 }
 
 sub unsetCookie

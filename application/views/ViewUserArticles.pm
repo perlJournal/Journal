@@ -25,8 +25,5 @@ sub showUserArticles
 	return $content;
 }
 
-sub getLogin 
-{
-	return 'veritas';
-}
+
 1;
