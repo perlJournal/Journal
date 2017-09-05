@@ -1,7 +1,7 @@
 RewriteEngine On
 
 DirectoryIndex index.cgi
-RewriteBase /~user4/perl/Journal/
+RewriteBase /~user1/Perl/Journal/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.cgi/$1 [PT]
