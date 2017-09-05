@@ -32,6 +32,15 @@ sub getUserData
     return $dataUser;
 }
 
+sub getUserDataById
+{
+    my($self,$id)= @_;
+    my $obj = utils::WorkDb->new();
+    $obj->connectToDb();
+    my $dataUser = $obj->exeSelect("Select * from journal_user where `id_user`='$id' ");
+    return $dataUser;
+}
+
 sub insertUserData
 {
     my($self,%data) = @_;
@@ -144,6 +153,64 @@ sub setCookie
     my $cookie1 = CGI::Cookie->new(-name=>'id',-value=>$id);
     my $cookie2 = CGI::Cookie->new(-name=>'hash',-value=>$hash);
     return header(-cookie=>[$cookie1,$cookie2]);
+}
+
+sub getCookieData
+{
+my($self) = @_;
+my %cookies = CGI::Cookie->fetch;
+my $id = %cookies->{'id'}->{'value'}->[0];
+my $hash = %cookies->{'hash'}->{'value'}->[0];
+my %data = (
+    'id' => $id;
+    'hash' => $hash;
+);
+
+return %data
+}
+
+sub unsetCookie
+{
+ my($self, $id, $hash) = @_;
+
+ my $cookie1 = CGI::Cookie->new(
+        -name    =>  $id,
+        -expires =>  '-1d',
+        -value => ''
+    );
+my $cookie2 = CGI::Cookie->new(
+        -name    =>  $hash,
+        -expires =>  '-1d',
+        -value => ''
+    );
+return header(-cookie=>[$cookie1,$cookie2]);
+}
+
+sub checkUser
+{
+my($self) = @_;
+my %cookies = CGI::Cookie->fetch;
+my $id = %cookies->{'id'}->{'value'}->[0];
+my $hash = %cookies->{'hash'}->{'value'}->[0];
+my $dataDB = $self->getUserDataById($id);
+$dataDB = $dataDB->[0];
+my $hashDb = $dataDB->{'hash'};
+    if(defined $id)
+    { 
+        if($hashDb eq $hash)
+        {
+        return 1;
+        }
+        else
+        {
+        return 0;
+        }
+    }
+    else
+    {
+        return 0;
+    }
+
 }
 
 1;
