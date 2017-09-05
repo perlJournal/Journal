@@ -19,6 +19,7 @@ return $data
 sub showAllArticles
 {
 	my ($self) = shift;
+    my ($login)= shift;
 	my ($data) = shift;
 
 	my $content = '';
