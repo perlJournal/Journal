@@ -160,7 +160,7 @@ my $hash = %cookies->{'hash'}->{'value'}->[0];
 my %data = (
     'id' => $id,
     'hash' => $hash,
-);
+	);
 
 return %data;
 }
