@@ -93,41 +93,69 @@ sub redirect
 
 sub getHeader
 {
-    my ($self) = shift;
-    my $root = $self->getRoot();
-    my $content .=   '<nav class="navbar navbar-default">';
-    $content .=          '<div class="container-fluid">';
-    $content .=            '<!-- Brand and toggle get grouped for better mobile display -->';
-    $content .=            '<div class="navbar-header">';
-    $content .=              '<a class="navbar-brand" href="'.$root .'">GeekJournal</a>';
-    $content .=            '</div>';
+    my ($self, $data, $login) = @_;
+	my $root = $self->getRoot();
 
-    $content .=            '<!-- Collect the nav links, forms, and other content for toggling -->';
-    $content .=            '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">';
-    $content .=              '<ul class="nav navbar-nav navbar-right">';
-    $content .=                '<li><a href="'.$root.'Authorization">Log in</a></li>';
-    $content .=                '<li><a href="'.$root.'Registration">Sign up</a></li>';
-    $content .=              '</ul>';
-    $content .=            '</div><!-- /.navbar-collapse -->';
-    $content .=          '</div><!-- /.container-fluid -->';
-    $content .=        '</nav>';
+	if($login == 1)
+	{
+	    my $content .=   '<nav class="navbar navbar-default">';
+	    $content .=          '<div class="container-fluid">';
+	    $content .=            '<!-- Brand and toggle get grouped for better mobile display -->';
+		$content .=            '<div class="navbar-header">';
+		$content .=              '<a class="navbar-brand" href="'.$root .'">GeekJournal</a>';
+		$content .=            '</div>';
 
-    return $content;
+		$content .=            '<!-- Collect the nav links, forms, and other content for toggling -->';
+		$content .=            '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">';
+		$content .=              '<ul class="nav navbar-nav navbar-right">';
+		$content .=                '<li><a href="'.$root.'Main/Logout">Log out</a></li>';
+		$content .=              '</ul>';
+		$content .=            '</div><!-- /.navbar-collapse -->';
+		$content .=          '</div><!-- /.container-fluid -->';
+		$content .=        '</nav>';
+ 
+		return $content;
+	}
+	else
+	{
+	    my $content .=   '<nav class="navbar navbar-default">';
+	    $content .=          '<div class="container-fluid">';
+	    $content .=            '<!-- Brand and toggle get grouped for better mobile display -->';
+		$content .=            '<div class="navbar-header">';
+		$content .=              '<a class="navbar-brand" href="'.$root .'">GeekJournal</a>';
+		$content .=            '</div>';
+
+		$content .=            '<!-- Collect the nav links, forms, and other content for toggling -->';
+		$content .=            '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">';
+		$content .=              '<ul class="nav navbar-nav navbar-right">';
+		$content .=                '<li><a href="'.$root.'Authorization">Log in</a></li>';
+		$content .=                '<li><a href="'.$root.'Registration">Sign up</a></li>';
+		$content .=              '</ul>';
+		$content .=            '</div><!-- /.navbar-collapse -->';
+		$content .=          '</div><!-- /.container-fluid -->';
+		$content .=        '</nav>';
+ 
+		return $content;
+	}
+ 
 }
 
 sub getSidebar
 {
-    my ($self) = shift;
+    my ($self, $data , $login) = @_;
     my $root = $self->getRoot();
-
-    my $content .= '<div class="col-md-3 navbar-default" style="text-align: center;">';
-    $content .= '<h1>Profile links</h1>';
-    $content .= '<a href="'.$root .'UserArticles">My articles</a><br />';
-    $content .= '<a href="'.$root.'UserArticlesAdd">Add post</a><br />';
-    $content .= '<a href="'.$root.'ProfileEdit">Profile</a>';
-    $content .= '</div>';
-
-    return $content;
+	
+	if ($login == 1)
+	{
+		my $content .= '<div class="col-md-3 navbar-default" style="text-align: center;">';
+		$content .= '<h1>Profile links</h1>';
+		$content .= '<a href="'.$root .'UserArticles">My articles</a><br />';
+		$content .= '<a href="'.$root.'UserArticlesAdd">Add post</a><br />';
+		$content .= '<a href="'.$root.'ProfileEdit">Profile</a>';
+		$content .= '</div>';
+	
+		return $content;
+	}
 }
 
 

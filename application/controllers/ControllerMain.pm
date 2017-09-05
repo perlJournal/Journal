@@ -14,19 +14,23 @@ use Data::Dumper;
 
 my $articleObj = models::Articles->new();
 my $userObj = models::Users->new();
+my $view = views::ViewMain->new();
 
 sub actionIndex
 {
-	my $check = $userObj->checkUser();
+	my $auth = $userObj->checkUser();
 
 	my @allArticles = @{$articleObj->getArticleAll()};
 	my @sorted = sort {$b->{'id_article'} <=> $a->{'id_article'}} @allArticles;
 	my $list = \@sorted;
 
-	my $view = views::ViewMain->new();
 	my $template = $view->getTemplate('mainTemplate');
-	my $page = $view->generateTemplate($template, $list, $check);
+	my $page = $view->generateTemplate($template, $list, $auth);
 	$view->viewTemplate($page);
 }
 
-
+sub actionLogout
+{
+	$userObj->unsetCookie();
+	$view->redirect('Main',"Content-type: text/html; charset=utf-8\n\n");
+}
