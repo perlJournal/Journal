@@ -146,8 +146,8 @@ sub updateHash
 sub setCookie
 {
     my($self, $id, $hash) = @_;
-    my $cookie1 = CGI::Cookie->new(-name=>'id',-value=>$id);
-    my $cookie2 = CGI::Cookie->new(-name=>'hash',-value=>$hash);
+    my $cookie1 = CGI::Cookie->new(-name=>'id',-value=>$id,-expires => '+40M');
+    my $cookie2 = CGI::Cookie->new(-name=>'hash',-value=>$hash,-expires => '+40M');
     return header(-cookie=>[$cookie1,$cookie2]);
 }
 

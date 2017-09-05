@@ -31,6 +31,6 @@ sub actionIndex
 
 sub actionLogout
 {
-	$userObj->unsetCookie();
-	$view->redirect('Main',"Content-type: text/html; charset=utf-8\n\n");
+	my $headers = $userObj->unsetCookie('id','hash') ;
+	$view->redirect('Main',$headers);
 }

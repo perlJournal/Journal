@@ -52,7 +52,7 @@ sub actionLogin
     }
     else
     {
-        $self->viewPage('auth','Invalid password or login'); 
+        $self->viewPage('auth',0,'Invalid password or login'); 
     }
 
     
@@ -63,11 +63,12 @@ sub viewPage
 {
     my ($self) = shift;
     my ($templateFile) = shift;
+    my ($login) = shift;
     my ($data) = shift;
     my ($headers) = shift;
     my $view = views::ViewAuthorization->new;
     my $template = $view->getTemplate($templateFile);
-    my $page = $view->generateTemplate($template,$data);
+    my $page = $view->generateTemplate($template,$login,$data);
     $view->viewTemplate($page);
 }
 

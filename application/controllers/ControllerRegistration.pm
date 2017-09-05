@@ -42,33 +42,34 @@ if($model->validateDataRegister(%dataUser))
     {
         if($model->insertUserData(%dataUser))
         {
-            $self->viewPage('registration succes');
+            $self->viewPage(0,'registration succes');
         }
         else
         {
-            $self->viewPage('This user exists already')
+            $self->viewPage(0,'This user exists already')
         }
     }
     else
     {
-        $self->viewPage('confirmation must be same with pass');
+        $self->viewPage(0,'confirmation must be same with pass');
     }
 
 }
 else
 {
 
-        $self->viewPage('required: Login, Email, Pass and pass confirm')
+        $self->viewPage(0,'required: Login, Email, Pass and pass confirm')
 }
 }
 
 sub viewPage
 {
 my ($self) = shift;
+my ($login) = shift;
 my ($data) = shift;
 my $view = views::ViewRegistration->new();
 my $template = $view->getTemplate('regist');
-my $page = $view->generateTemplate($template,$data);
+my $page = $view->generateTemplate($template,$login,$data);
 $view->viewTemplate($page);
 }
 

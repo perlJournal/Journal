@@ -35,9 +35,9 @@ sub generateTemplate
 {
     my($self) = shift;
     my($text) = shift;
-    my($data) = shift;
     my($login) = shift;
-    $text =~ s/\%FUNC_(\w+)\%/$self->$1($data,$login)/gse;
+    my($data) = shift;
+    $text =~ s/\%FUNC_(\w+)\%/$self->$1($login,$data)/gse;
     return $text;
 }
 
@@ -93,7 +93,7 @@ sub redirect
 
 sub getHeader
 {
-    my ($self, $data, $login) = @_;
+    my ($self, $login, $data) = @_;
 	my $root = $self->getRoot();
 
 	if($login == 1)
@@ -142,7 +142,7 @@ sub getHeader
 
 sub getSidebar
 {
-    my ($self, $data , $login) = @_;
+    my ($self, $login , $data) = @_;
     my $root = $self->getRoot();
 	
 	if ($login == 1)
