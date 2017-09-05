@@ -7,19 +7,10 @@ use vars qw(@ISA);
 use core::View;
 @ISA = qw(core::View);
 
-sub showData
-{
-my ($self) = shift;
-my ($data) = shift;
-
-return $data
-
-}
-
 sub showAllArticles
 {
 	my ($self) = shift;
-    my ($login)= shift;
+    my ($login) = shift;
 	my ($data) = shift;
 
 	my $content = '';

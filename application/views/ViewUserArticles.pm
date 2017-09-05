@@ -12,6 +12,7 @@ my $wayEditArticle = 'UserArticlesEdit';
 
 sub showUserArticles
 {
+
 	my ($self) = shift;
     my ($login) = shift;
 	my ($data) = shift;
