@@ -90,25 +90,24 @@ sub redirect
 
 sub getHeader
 {
-my $content .=   '<nav class="navbar navbar-default">';
-my $content .=          '<div class="container-fluid">';
-my $content .=            '<!-- Brand and toggle get grouped for better mobile display -->';
-my $content .=            '<div class="navbar-header">';
-my $content .=              '<a class="navbar-brand" href="#">GeekJournal</a>';
-my $content .=            '</div>';
+	my $content .=   '<nav class="navbar navbar-default">';
+	$content .=          '<div class="container-fluid">';
+	$content .=            '<!-- Brand and toggle get grouped for better mobile display -->';
+	$content .=            '<div class="navbar-header">';
+	$content .=              '<a class="navbar-brand" href="#">GeekJournal</a>';
+	$content .=            '</div>';
 
-my $content .=            '<!-- Collect the nav links, forms, and other content for toggling -->';
-my $content .=            '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">';
-my $content .=              '<ul class="nav navbar-nav navbar-right">';
-my $content .=                '<li><a href="#">Log in</a></li>';
-my $content .=                '<li><a href="#">Sign up</a></li>';
-my $content .=              '</ul>';
-my $content .=            '</div><!-- /.navbar-collapse -->';
-my $content .=          '</div><!-- /.container-fluid -->';
-my $content .=        '</nav>';
+	$content .=            '<!-- Collect the nav links, forms, and other content for toggling -->';
+	$content .=            '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">';
+	$content .=              '<ul class="nav navbar-nav navbar-right">';
+	$content .=                '<li><a href="Registration">Log in</a></li>';
+	$content .=                '<li><a href="Authorization">Sign up</a></li>';
+	$content .=              '</ul>';
+	$content .=            '</div><!-- /.navbar-collapse -->';
+	$content .=          '</div><!-- /.container-fluid -->';
+	$content .=        '</nav>';
 
-return $content;
-
+	return $content;
 }
 
 
