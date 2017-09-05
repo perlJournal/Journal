@@ -5,6 +5,7 @@ use warnings;
 
 use core::Controller;
 use models::Articles;
+use models::Users;
 use views::ViewUserArticlesEdit;
 use CGI qw(:cgi-lib :escapeHTML :unescapeHTML);
 use Data::Dumper;
@@ -21,13 +22,23 @@ ReadParse();
 sub actionIndex
 {
 	my ($self) = @_;
-	
+    my ($self) = @_;
+    my $model = models::Users->new();
+	my $view = views::ViewUserArticlesEdit->new();
+    if($model->checkUser)
+    {
 	my $id = %in->{'id_article'};
 	my $article = $modelObj->getArticleById($id);	
-	my $view = views::ViewUserArticlesEdit->new();
 	my $template = $view->getTemplate('articlesEdit');
 	my $page = $view->generateTemplate($template, $article);
 	$view->viewTemplate($page);
+    }
+    else
+    {
+        $view->redirect('Authorization',"Content-type: text/html; charset=utf-8\n\n");
+
+    }
+
 }
 
 sub actionEdit

@@ -5,6 +5,7 @@ use warnings;
 
 use core::Controller;
 use models::Articles;
+use models::Users;
 use views::ViewUserArticlesAdd;
 use CGI qw(:cgi-lib :escapeHTML :unescapeHTML);
 use Data::Dumper;
@@ -21,17 +22,31 @@ ReadParse();
 sub actionIndex
 {
 	my ($self) = @_;
-	my $view = views::ViewUserArticlesAdd->new();
-	my $template = $view->getTemplate('articlesAdd');
-	my $page = $view->generateTemplate($template);
-	$view->viewTemplate($page);
+    my $view = views::ViewUserArticlesAdd->new();
+    my $model = models::Users->new();
+    if($model->checkUser)
+    {
+	    my $template = $view->getTemplate('articlesAdd');
+	    my $page = $view->generateTemplate($template);
+	    $view->viewTemplate($page);
+    }
+    else
+    {
+        $view->redirect('Authorization',"Content-type: text/html; charset=utf-8\n\n");
+
+    }
 }
 
 sub actionEdit
 {
 	my ($self) = @_;
+    my $model = models::Users->new();
+    my %getCookie = $model->getCookieData();
+    my $id = %getCookie->{'id'};
+    my $userData = $model->getUserDataById($id);
+    my $userData = $userData->[0];
+    my $login = $userData->{'login'};
 
-	my $login = 'veritas';
 	my $title = %in->{'title'};
 	my $content = %in->{'content'};
 

@@ -18,11 +18,21 @@ my $var = new CGI->new();
 
 sub actionIndex
 {
-     my $getDataUserById = $model->getUserData('Alex');
-     my $view = views::ViewProfileEdit->new();
+    my $view = views::ViewProfileEdit->new();
+    
+    if($model->checkUser)
+    {
+
+     my %cookieData = $model->getCookieData;
+     my $getDataUserById = $model->getUserDataById(%cookieData->{'id'});
 	 my $data = $view->getTemplate('profile');
 	 my $obj =  $view->generateTemplate($data,$getDataUserById );
 	 $view->viewTemplate($obj);
+    }
+    else
+    {
+        $view->redirect('Authorization',"Content-type: text/html; charset=utf-8\n\n");
+    }
 
 }
 
